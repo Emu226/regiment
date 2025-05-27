@@ -4,18 +4,42 @@ import sys
 from typing import List, Tuple
 from dataclasses import dataclass
 from enum import Enum
-import mission_build
 
 # Initialisierung von pygame
 pygame.init()
 
+# Konstanten
+WINDOW_WIDTH = 1920
+WINDOW_HEIGHT = 1080
+FPS = 60
+
+# Farbschema (militärisch-dunkel)
+class Colors:
+    BACKGROUND = (28, 28, 28)          # #1c1c1c
+    PANEL_BG = (37, 37, 37)            # #252525
+    BORDER = (139, 115, 85)            # #8b7355
+    TEXT_PRIMARY = (212, 212, 212)     # #d4d4d4
+    TEXT_SECONDARY = (139, 115, 85)    # #8b7355
+    HEADER_BG = (139, 115, 85)         # #8b7355
+    HEADER_TEXT = (30, 30, 30)         # #1e1e1e
+    URGENT_BORDER = (255, 68, 68)      # #ff4444
+    WITNESSED_BORDER = (68, 255, 68)   # #44ff44
+    INPUT_BG = (30, 30, 30)            # #1e1e1e
+
+@dataclass
+class Report:
+    """Repräsentiert einen Bericht"""
+    timestamp: str
+    source: str
+    content: str
+    report_type: str  # "normal", "urgent", "witnessed"
     
 class TextPanel:
     """Linkes Panel für Berichte und Befehle"""
     
     def __init__(self, x: int, y: int, width: int, height: int):
         self.rect = pygame.Rect(x, y, width, height)
-        self.reports: List[mission_build.Report] = []
+        self.reports: List[Report] = []
         self.scroll_offset = 0
         self.max_scroll = 0
         
@@ -23,7 +47,7 @@ class TextPanel:
         self.font = pygame.freetype.Font(None, 14)
         self.header_font = pygame.freetype.Font(None, 16)
         
-        # Define areas
+        # Bereiche definieren
         header_height = 40
         command_height = 200
         
@@ -39,7 +63,22 @@ class TextPanel:
         # Beispiel-Berichte laden
         self._load_sample_reports()
     
-
+    def _load_sample_reports(self):
+        """Lädt Beispiel-Berichte"""
+        sample_reports = [
+            Report("14:23", "DIREKTE BEOBACHTUNG", 
+                  "Ich sehe durch mein Fernglas: Regiment 226 formiert sich neu hinter dem Hügel. Die Männer wirken erschöpft, aber diszipliniert. Oberst Mueller scheint die Lage im Griff zu haben.",
+                  "witnessed"),
+            Report("14:15", "EILBERICHT VON MAJOR WEBER",
+                  "General! Der linke Flügel ist unter schwerem Beschuss. Regiment 187 hat bereits 30% Verluste. Hauptmann Fischer bittet um sofortige Verstärkung oder Rückzugsbefehl!",
+                  "urgent"),
+            Report("14:10", "MELDUNG VON LEUTNANT BRAUN",
+                  "Regiment 142 hat Position Delta erreicht. Kein Feindkontakt. Warten auf weitere Befehle. Munition bei 80%.",
+                  "normal"),
+            Report("14:05", "AUFKLÄRUNG VON SERGEANT KLEIN",
+                  "Feindliche Kavallerie gesichtet, etwa 200 Mann, 2km südöstlich von unserem Hauptquartier. Bewegungsrichtung unklar.",
+                  "normal"),
+        ]
         self.reports = sample_reports
         self._calculate_scroll_bounds()
     
