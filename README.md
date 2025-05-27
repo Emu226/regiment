@@ -193,24 +193,3 @@ Phase 5: Balancing & Polish
     • [ ] Mehr Szenarien 
     • [ ] Speichern/Laden 
 
-🤔 Kritische Design-Entscheidungen
-1. Wie komplex soll die Schlacht-Simulation sein?
-    • Einfach: Jedes Regiment hat Kampfkraft-Wert, Würfelwurf entscheidet 
-    • Komplex: Terrain, Wetter, Flankenangriffe, Munition berücksichtigen 
-    • Empfehlung: Einfach anfangen, später erweitern 
-2. Wie groß soll das "Schlachtfeld" sein?
-    • Grid-System (z.B. 20x20 Felder) oder freie Koordinaten? 
-    • Empfehlung: Grid-System ist einfacher für Anfänger 
-3. Wie viele Regimenter gleichzeitig?
-    • Zu wenige: Langweilig 
-    • Zu viele: Überforderung 
-    • Empfehlung: 4-6 Regimenter für den Anfang 
-4. Speicherung der Spielstände?
-    • Erst später implementieren, erstmal das Grundspiel zum Laufen bringen 
-
-💡 Erste Schritte - Was jetzt?
-    1. Entscheide: Willst du mit dem Grundgerüst (pygame-Fenster) anfangen? 
-    2. Oder lieber: Erst die Datenstrukturen (Regiment, Report) definieren? 
-    3. Oder: Ein einfaches Kampfsystem als Konsolen-Programm testen? 
-Meine Empfehlung: Beginne mit einem einfachen pygame-Fenster, das Text anzeigen kann. Dann fügen wir Schritt für Schritt die Komponenten hinzu.
-Was denkst du? Wo sollen wir anfangen?
