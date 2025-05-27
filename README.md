@@ -194,6 +194,7 @@ Phase 5: Balancing & Polish
     • [ ] Speichern/Laden 
 
     HTML Concept Art/ beispiel
+    
 <!DOCTYPE html>
 <html lang="de">
 <head>
