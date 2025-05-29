@@ -23,6 +23,20 @@ officier_braun = Officier("Captain", "Braun", "142. Regiment", "sample", "sample
 officier_weber = Officier("Major", "Weber", "187. Regiment", "sample", "sample", "sample")
 
 
+# # Dictionary to find officers by name
+# officers_by_name = {
+#     "Dwarkaar": officer_dwarkaar,
+#     "Bougle": officer_bougle,
+#     "Klein": officer_klein,
+#     "Braun": officer_braun,
+#     "Weber": officer_weber
+# }
+
+# def get_officer_by_name(name):
+#     """Get officer object by name"""
+#     return officers_by_name.get(name)
+
+
 
 """ Sample:
 Message(

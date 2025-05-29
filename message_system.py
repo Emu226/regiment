@@ -15,6 +15,7 @@ class Message:
     sender: str
     time: str
     content: str
+    officer: 'Officer' = None  # Reference to the Officer object
     timestamp: float = None
 
 class MessagePanel:
@@ -63,6 +64,17 @@ class MessagePanel:
             screen.blit(content_surf, (msg_rect.x + 5, y_offset + 35))
             
             y_offset += 90
+        
+    # Message click → message.officer → random image
+    def handle_click(self, pos):
+        if message.display_rect.collidepoint(pos):
+            if message.officer:
+                selected_image = random.choice([
+                    message.officer.image1, 
+                    message.officer.image2, 
+                    message.officer.image3
+                ])
+                self.on_message_click(message.officer, selected_image)
             
     def handle_scroll(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:

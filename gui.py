@@ -19,6 +19,46 @@ class UserInterface:
         self.cursor_timer = 0  # Timer for cursor blinking
         self.cursor_visible = True  # Current cursor visibility state
         self.message_panel = message_system.MessagePanel(self.text_panel_rect)
+
+                # Current displayed image and officer
+        self.current_officer = None
+        self.current_image_path = None
+        self.current_image = None
+        
+        # Create message panel with callback
+        self.message_panel = message_system.MessagePanel(
+            self.text_panel_rect, 
+            on_message_click=self.on_message_clicked
+        )
+    
+    def on_message_clicked(self, officer, image_path):
+        """Callback when a message is clicked"""
+        print(f"Message clicked: {officer.name} ({officer.rank}) - {image_path}")
+        self.current_officer = officer
+        self.current_image_path = image_path
+        self.load_officer_image()
+    
+    def load_officer_image(self):
+        """Load the officer image for display"""
+        if self.current_image_path:
+            try:
+                # For now, we'll create a placeholder
+                # In real implementation, you'd load: pygame.image.load(self.current_image_path)
+                self.current_image = pygame.Surface((400, 300))
+                self.current_image.fill(config.Colors.TEXT_SECONDARY)
+                
+                # Add text overlay to show which officer/image this represents
+                font = pygame.font.Font(None, 48)
+                text = font.render(f"{self.current_officer.name}", True, config.Colors.TEXT_PRIMARY)
+                text_rect = text.get_rect(center=(200, 150))
+                self.current_image.blit(text, text_rect)
+                
+            except Exception as e:
+                print(f"Could not load image {self.current_image_path}: {e}")
+                self.current_image = None
+
+
+
     
     def draw(self):
         # Update cursor blinking timer
