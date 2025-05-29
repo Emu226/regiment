@@ -52,6 +52,7 @@
 import pygame
 import config
 import gui
+from message_system import Message, MessageType, MessagePanel
 
 def initialize_game():
     pygame.init()
@@ -63,6 +64,23 @@ def initialize_game():
 
 def main():
     screen, clock, ui = initialize_game()
+
+    # Test messages
+    ui.message_panel.add_message(Message(
+        type=MessageType.WITNESSED,
+        sender="DIREKTE BEOBACHTUNG",
+        time="14:23",
+        content="Regiment 226 formiert sich neu hinter dem Hügel."
+    ))
+    
+    ui.message_panel.add_message(Message(
+        type=MessageType.URGENT,
+        sender="MAJOR WEBER",
+        time="14:15",
+        content="Linker Flügel unter schwerem Beschuss! 30% Verluste!"
+    ))
+
+
     running = True
     while running:
         for event in pygame.event.get():

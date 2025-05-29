@@ -3,6 +3,7 @@
 
 import pygame
 import config
+import message_system
 
 
 # class UserInterface for using in the main-loop
@@ -17,6 +18,7 @@ class UserInterface:
         self.input_active = False  # Track if input box is active
         self.cursor_timer = 0  # Timer for cursor blinking
         self.cursor_visible = True  # Current cursor visibility state
+        self.message_panel = message_system.MessagePanel(self.text_panel_rect)
     
     def draw(self):
         # Update cursor blinking timer
@@ -29,9 +31,10 @@ class UserInterface:
             self.cursor_visible = False
 
         # Draw text panel
-        pygame.draw.rect(self.screen, config.Colors.PANEL_BG, self.text_panel_rect)
-        pygame.draw.rect(self.screen, config.Colors.BORDER, self.text_panel_rect, 2)
-        
+        # pygame.draw.rect(self.screen, config.Colors.PANEL_BG, self.text_panel_rect)
+        # pygame.draw.rect(self.screen, config.Colors.BORDER, self.text_panel_rect, 2)
+        self.message_panel.draw(self.screen)
+
         # Draw visual panel
         pygame.draw.rect(self.screen, config.Colors.PANEL_BG, self.visual_panel_rect)
         pygame.draw.rect(self.screen, config.Colors.BORDER, self.visual_panel_rect, 2)
@@ -54,6 +57,7 @@ class UserInterface:
 
     def handle_user_input(self, event):
     # Methon to handle user input after mouse-click into input_box
+        self.message_panel.handle_scroll(event)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.input_box.collidepoint(event.pos):
                 self.input_active = True

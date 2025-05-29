@@ -17,10 +17,6 @@ class Message:
     content: str
     timestamp: float = None
 
-    def __post_init__(self):
-        if self.timestamp is None:
-            self.timestamp = datetime.now().timestamp()
-
 class MessagePanel:
     def __init__(self, rect: pygame.Rect):
         self.rect = rect
@@ -74,3 +70,4 @@ class MessagePanel:
                 self.scroll_offset = max(0, self.scroll_offset - 30)
             elif event.button == 5:  # Mouse wheel down
                 self.scroll_offset += 30
+
