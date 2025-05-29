@@ -1,8 +1,6 @@
+#Class and def() list
 
-
-
-
-
+config.py #Constants like Window Width, Height, FPS. Including config.Colors:
 #Constants
 WINDOW_WIDTH = 1920
 WINDOW_HEIGHT = 1080
@@ -19,5 +17,6 @@ class Colors:
     HEADER_TEXT = (30, 30, 30)         # #1e1e1e
     URGENT_BORDER = (255, 68, 68)      # #ff4444
     WITNESSED_BORDER = (68, 255, 68)   # #44ff44
-    INPUT_BG = (74, 67, 67)            # #4a4343
+    INPUT_BG = (74, 67, 67)            #rgb(74, 67, 67)
     BLACK = (0, 0, 0)                  # #000000 
+
