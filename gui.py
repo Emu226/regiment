@@ -1,6 +1,6 @@
 #Creating a GUI
 #Based on the README.md
-
+ 
 import pygame
 import config
 import message_system
